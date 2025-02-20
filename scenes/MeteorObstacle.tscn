@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://jxne3lcdhyvj"]
+
+[ext_resource type="Script" path="res://scenes/MeteorObstacle.gd" id="1_5hxx6"]
+[ext_resource type="Texture2D" uid="uid://cq5yn6ecuv8qf" path="res://assets/meteorBrown_big1.png" id="1_7tpxx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghfmw"]
+radius = 45.1774
+
+[node name="MeteorObstacle" type="Area2D"]
+script = ExtResource("1_5hxx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7tpxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -2)
+shape = SubResource("CircleShape2D_ghfmw")

@@ -1,0 +1,156 @@
+[gd_scene load_steps=14 format=3 uid="uid://fl5ex1bqlg6k"]
+
+[ext_resource type="Texture2D" uid="uid://sa8id2nyf8yr" path="res://assets/galaxy.jpg" id="1_mcnkj"]
+[ext_resource type="PackedScene" uid="uid://do785tn30i8l" path="res://scenes/GreenShip.tscn" id="1_vm26h"]
+[ext_resource type="PackedScene" uid="uid://xk0waxsnr5lp" path="res://scenes/SnowPlatform.tscn" id="2_b7qgi"]
+[ext_resource type="Script" path="res://scenes/ObjectiveNewArea.gd" id="3_3s8l7"]
+[ext_resource type="PackedScene" uid="uid://dflaa0uubh7mt" path="res://scenes/FasilkomDestination.tscn" id="3_gutv8"]
+[ext_resource type="PackedScene" uid="uid://jxne3lcdhyvj" path="res://scenes/MeteorObstacle.tscn" id="5_y7gcb"]
+[ext_resource type="Script" path="res://scenes/OutBoundArea.gd" id="6_23f2s"]
+
+[sub_resource type="GDScript" id="GDScript_ilvua"]
+script/source = "extends Node2D
+
+@export var speed = 500.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print(\"GreenShip Ready For Departing !\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_pressed(\"move_up\"):
+		move_local_y(-speed * delta, false)
+	
+	if Input.is_action_pressed(\"move_down\"):
+		move_local_y(speed * delta, false)
+	
+	if Input.is_action_pressed(\"move_left\"):
+		move_local_x(-speed * delta, false)
+	
+	if Input.is_action_pressed(\"move_right\"):
+		move_local_x(speed * delta, false)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qmll"]
+size = Vector2(91, 95.75)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i3f60"]
+a = Vector2(-1, 681)
+b = Vector2(1, -35)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pr23b"]
+a = Vector2(-17, -7)
+b = Vector2(1210, -7)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1dyam"]
+a = Vector2(-26, 654)
+b = Vector2(1174, 654)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_k7ppm"]
+a = Vector2(1159, 669)
+b = Vector2(1159, -29)
+
+[node name="NewLevel" type="Node"]
+
+[node name="GalaxyBackground" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mcnkj")
+expand_mode = 3
+
+[node name="GreenShip" parent="." instance=ExtResource("1_vm26h")]
+position = Vector2(125, 529)
+script = SubResource("GDScript_ilvua")
+
+[node name="ObjectiveNewArea" type="Area2D" parent="."]
+position = Vector2(1116, 27)
+script = ExtResource("3_3s8l7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveNewArea"]
+position = Vector2(-12.5, 22.125)
+shape = SubResource("RectangleShape2D_3qmll")
+
+[node name="FasilkomDestination" parent="ObjectiveNewArea" instance=ExtResource("3_gutv8")]
+position = Vector2(-12, 19)
+
+[node name="Platform" type="Node2D" parent="."]
+
+[node name="PlatformNew" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(127, 605)
+
+[node name="PlatformNew2" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(211, 543)
+
+[node name="PlatformNew3" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(41, 546)
+
+[node name="PlatformNew4" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(577, 351)
+
+[node name="PlatformNew5" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(577, 274)
+
+[node name="PlatformNew6" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(936, 199)
+
+[node name="PlatformNew7" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(933, 126)
+
+[node name="PlatformNew8" parent="Platform" instance=ExtResource("2_b7qgi")]
+position = Vector2(578, 429)
+
+[node name="Obstacle" type="Node2D" parent="."]
+
+[node name="MeteorObstacle" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(167, 292)
+
+[node name="MeteorObstacle2" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(135, 81)
+
+[node name="MeteorObstacle3" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(368, 573)
+
+[node name="MeteorObstacle4" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(783, 334)
+
+[node name="MeteorObstacle5" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(767, 561)
+
+[node name="MeteorObstacle6" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(381, 165)
+
+[node name="MeteorObstacle7" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(976, 416)
+
+[node name="MeteorObstacle8" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(553, 53)
+
+[node name="MeteorObstacle9" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(380, 373)
+
+[node name="MeteorObstacle10" parent="Obstacle" instance=ExtResource("5_y7gcb")]
+position = Vector2(733, 158)
+
+[node name="OutOfBound" type="Area2D" parent="."]
+script = ExtResource("6_23f2s")
+
+[node name="LeftBoundCollisionShape2D" type="CollisionShape2D" parent="OutOfBound"]
+position = Vector2(-7, 0)
+shape = SubResource("SegmentShape2D_i3f60")
+
+[node name="TopBoundCollisionShape2D" type="CollisionShape2D" parent="OutOfBound"]
+shape = SubResource("SegmentShape2D_pr23b")
+
+[node name="BottomBoundCollisionShape2D" type="CollisionShape2D" parent="OutOfBound"]
+shape = SubResource("SegmentShape2D_1dyam")
+
+[node name="RightBoundCollisionShape2D" type="CollisionShape2D" parent="OutOfBound"]
+shape = SubResource("SegmentShape2D_k7ppm")
